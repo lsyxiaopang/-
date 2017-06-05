@@ -3,27 +3,19 @@
 #include<Windows.h>
 #include<string>
 #include<iostream>
+#include"getreadyforcopy.h"
 using namespace std;
 DWORD searchdriver()
 {
-	char getpath[MAX_PATH - 10];
-	GetLogicalDriveStringsA(MAX_PATH, getpath);
-	char* pgetpath = getpath;
-	for (double i = 1; i < 1014; i++)
+	char szLCS[MAX_PATH]="A:\\";
+	for (char a = 'A'; a <= 'Z'; a++)
 	{
-		for (char a = 'A'; a <= 'Z'; a++)
+		szLCS[0] = a;
+		UINT OUTPUT = GetDriveTypeA(szLCS);
+		if (OUTPUT == DRIVE_REMOVABLE)
 		{
-			if (*pgetpath == a)
-			{
-				string waitingcheck = a + ":\\";
-				UINT OUTPUT = GetDriveTypeA(waitingcheck.c_str());
-				if (OUTPUT == DRIVE_REMOVABLE)
-				{
-
-				}
-			}
+			cout << "find";
 		}
-		pgetpath++;
 	}
 	return 0;
 }
